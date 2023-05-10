@@ -34,6 +34,17 @@ app.get('/booking/:id', function (req, res, next) {
     );
 })
 
+app.get('/bookings/waiting', function (req, res, next) {
+    const id = req.params.id;
+    connection.query(
+        'SELECT * FROM `booking` WHERE `status` = "0"',
+        [id],
+        function (err, results) {
+            res.json(results);
+        }
+    );
+})
+
 app.post('/addBooking', function (req, res, next) {
     connection.query(
         'INSERT INTO `booking`(`fname`, `lname`, `phone`, `room`, `people`, `D_from`, `D_to`, `airport`, `breakfast`, `rental`, `trip`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
