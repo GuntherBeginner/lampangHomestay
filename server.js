@@ -23,7 +23,7 @@ app.get('/bookings', function (req, res, next) {
     );
 })
 
-app.get('/booking/:id', function (req, res, next) {
+app.get('/booking/:B_id', function (req, res, next) {
     const id = req.params.id;
     connection.query(
         'SELECT * FROM `booking` WHERE `B_id` = ?',
@@ -62,7 +62,7 @@ app.post('/addBooking', function (req, res, next) {
     );
 })
 
-app.put('/updateBooking/:id', function (req, res, next) {
+app.put('/updateBooking/:B_id', function (req, res, next) {
     connection.query(
         'UPDATE `booking` SET `fname`= ?, `lname`= ?, `phone`= ?, `room`= ?, `people`= ?, `D_from`= ?, `D_to`= ?, `airport`= ?, `breakfast`= ?, `rental`= ?, `trip`= ?, `status`= ?  WHERE B_id = ?',
         [req.body.fname, req.body.lname, req.body.phone, req.body.room, req.body.people, req.body.D_from, req.body.D_to, req.body.airport, req.body.breakfast, req.body.rental, req.body.trip, req.body.status, req.body.B_id],
