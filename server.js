@@ -52,6 +52,16 @@ app.get('/bookings/confirm', function (req, res, next) {
     );
 })
 
+app.post('/login', function (req, res, next) {
+    console.log('SELECT * FROM `admin` WHERE `username` = "'+ req.body.username +'" AND `password` = "'+ req.body.password+'"',);
+    connection.query(
+        'SELECT * FROM `admin` WHERE `username` = "'+ req.body.username +'" AND `password` = "'+ req.body.password+'"',
+        function (err, results) {
+            res.json(results);
+        }
+    );
+})
+
 app.post('/addBooking', function (req, res, next) {
     connection.query(
         'INSERT INTO `booking`(`fname`, `lname`, `phone`, `room`, `people`, `D_from`, `D_to`, `airport`, `breakfast`, `rental`, `trip`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -83,5 +93,5 @@ app.delete('/delBooking', function (req, res, next) {
 })
 
 app.listen(5000, function () {
-    console.log('CORS-enabled web server listening on port 5000_Helloworld')
+    console.log('CORS-enabled web server listening on port 5000')
 })
